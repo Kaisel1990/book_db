@@ -1,0 +1,3 @@
+from videocapture import *
+
+testt()
