@@ -1,32 +1,6 @@
 # -*- coding: utf-8 -*-
 import pymysql
 
-
-
-def SQL_To_HTML_Table( Query, cursor ):
-    
-    cursor.execute(Query)
-    Result_Rel = cursor.fetchall()
-    
-    #~ String = '<table>'
-    
-    for Row in Result_Rel:
-        
-        String = String + '<tr>'
-    
-        for Col in Row:
-            
-            String = String + '<td>'
-            String = String + str(Col)
-            String = String + '</td>'
-    
-        String = String + '</tr>'
-         
-    #~ String = String + '</table>' 
-    
-    return String
-
-
  
 def SQL_To_JSON( Query, cursor): 
 
@@ -44,14 +18,6 @@ def SQL_To_JSON( Query, cursor):
         
     return resultDict
  
- 
- 
-def returnSQL ( Query, cursor):
-    
-    cursor.execute(Query)
-    Result_Rel = cursor.fetchall()
-    print Result_Rel
-    return Result_Rel 
     
 if __name__ == '__main__':
 
@@ -59,5 +25,5 @@ if __name__ == '__main__':
     cursor = mydb.cursor()
 
     sql_query = "SELECT * from BookDB.Test_Database"
-    print SQL_To_HTML_Table(sql_query, cursor)
+    print SQL_To_JSON(sql_query, cursor)
     

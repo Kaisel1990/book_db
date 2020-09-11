@@ -6,9 +6,7 @@
 		<script type=text/javascript>
 			$(function() {
 			  $('a#process_input').bind('click', function() {
-				$.getJSON('/background_process', {
-				  proglang: $('input[name="proglang"]').val(),
-				}, function(json_data) {var table_obj = document.getElementById("result");
+				$.getJSON('/background_process',  function(json_data) {var table_obj = document.getElementById("result");
 					var TotalString = '<tr>' ;
                     $.each(json_data, function(index, item){
 		              
@@ -30,7 +28,7 @@
 		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 		<h3>Buchverwaltungsprogramm v1.0</h3>
 			<form>
-				<input type=page size=5 name=proglang>
+				
 				<a href=# id=process_input><button class='btn btn-default'>Scannen</button></a>
 			</form>
 		<table id=result></table>
