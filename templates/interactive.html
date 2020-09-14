@@ -10,8 +10,34 @@
 					var TotalString = '<tr>' ;
                     $.each(json_data, function(index, item){
 		              
-                      TotalString =  TotalString + '<td>'+item.ID + '</td>';
-                      TotalString =  TotalString + '<td>'+item.Name + '</td>';
+                      TotalString =  TotalString + '<td>'+item.Titel + '</td>';
+                      TotalString =  TotalString + '<td>'+item.Autor + '</td>';
+                      TotalString =  TotalString + '<td>'+item.Sprache + '</td>';
+                      TotalString =  TotalString + '<td>'+item.ISBN + '</td>';
+                      TotalString = TotalString + '</tr>' ;
+                      
+					})
+					table_obj.innerHTML = TotalString;
+				});
+				return false;
+			  });
+			});
+		</script>
+	</head>
+
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+			$(function() {
+			  $('a#process_input').bind('click', function() {
+				$.getJSON('/background_process2',  function(json_data) {var table_obj = document.getElementById("result");
+					var TotalString = '<tr>' ;
+                    $.each(json_data, function(index, item){
+		              
+                      TotalString =  TotalString + '<td>'+item.Titel + '</td>';
+                      TotalString =  TotalString + '<td>'+item.Autor + '</td>';
+                      TotalString =  TotalString + '<td>'+item.Sprache + '</td>';
+                      TotalString =  TotalString + '<td>'+item.ISBN + '</td>';
                       TotalString = TotalString + '</tr>' ;
                       
 					})

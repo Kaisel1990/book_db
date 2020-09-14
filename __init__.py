@@ -12,17 +12,24 @@ app = Flask(__name__)
 
 @app.route("/interactive/")
 def interactive():
+    
     return render_template('interactive.html')
     
     
 @app.route('/background_process')
 def background_process():
             
-    sql_query = "SELECT * from BookDB.Test_Database"
+    
+    bookData = getBookData()
+    
+    if bookData != []:
+        addToDB(bookData, mydb)
+    
+    sql_query = "SELECT * from BookDB.Books"
     bookDict = SQL_To_JSON(sql_query, cursor)
-    getBookData()
     return json.dumps(bookDict) 
             
     
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host= '0.0.0.0')
+

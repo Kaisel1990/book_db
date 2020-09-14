@@ -12,7 +12,7 @@ def decode(im) :
 
     # Print results
     for obj in decodedObjects:
-		pass
+        pass
         
     try:
         bookInfo = getISBN(str(obj.data))  
@@ -29,7 +29,7 @@ def getISBN(data):
    
     user_input = str(data)
     f = urllib2.urlopen(base_api_link + user_input)
-    
+    print(base_api_link + user_input)
     text = f.read()
     
     decoded_text = text.decode("utf-8")
@@ -38,13 +38,13 @@ def getISBN(data):
     authors = obj["items"][0]["volumeInfo"]["authors"]
     
     # displays title, summary, author, domain, page count and language
-    print("\nTitle:", volume_info["volumeInfo"]["title"])
-    print("\nSummary:\n")
-    print("\nAuthor(s):", ",".join(authors))
-    print("\nPublic Domain:", volume_info["accessInfo"]["publicDomain"])
-    print("\nPage count:", volume_info["volumeInfo"]["pageCount"])
-    print("\nLanguage:", volume_info["volumeInfo"]["language"])
+    #~ print("\nTitle:", volume_info["volumeInfo"]["title"])
+    #~ print("\nSummary:\n")
+    #~ print("\nAuthor(s):", ",".join(authors))
+    #~ print("\nPublic Domain:", volume_info["accessInfo"]["publicDomain"])
+    #~ print("\nPage count:", volume_info["volumeInfo"]["pageCount"])
+    #~ print("\nLanguage:", volume_info["volumeInfo"]["language"])
       
     
-    return [volume_info, authors]
-
+    #~ return [volume_info, authors]
+    return obj
