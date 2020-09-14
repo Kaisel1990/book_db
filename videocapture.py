@@ -9,7 +9,7 @@ def getBookData():
     faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     video_capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
-    maxScanTime = 5.0
+    maxScanTime = 7.0
     startTime = time.time() 
     Continue = True
     

@@ -25,11 +25,19 @@ def background_process():
     if bookData != []:
         addToDB(bookData, mydb)
     
-    sql_query = "SELECT * from BookDB.Books"
+    sql_query = "SELECT * from BookDB.Books order by Autor"
     bookDict = SQL_To_JSON(sql_query, cursor)
     return json.dumps(bookDict) 
+
+@app.route('/background_process2')
+
+def background_process2():
             
-    
+   
+    sql_query = "SELECT * from BookDB.Books order by Autor"
+    bookDict = SQL_To_JSON(sql_query, cursor)
+    return json.dumps(bookDict)
+
 if __name__ == "__main__":
     app.run(debug=True, host= '0.0.0.0')
 

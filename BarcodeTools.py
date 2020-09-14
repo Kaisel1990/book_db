@@ -12,6 +12,7 @@ def decode(im) :
 
     # Print results
     for obj in decodedObjects:
+       
         pass
         
     try:

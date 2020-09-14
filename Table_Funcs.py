@@ -33,9 +33,10 @@ def addToDB( bookData, db ):
     
     if len(titel) > 50:
         titel = titel[0:50]
-    
+        
+        
     query = "INSERT INTO BookDB.Books(Titel,Autor,Sprache,ISBN) VALUES(%s,%s,%s,%s)"
-    args = (str(titel), str(author), str(language), str(ISBN))
+    args = (titel.encode('utf-8'), author.encode('utf-8'), str(language), str(ISBN))
     try:    
         cursor.execute(query, args)
         db.commit()
