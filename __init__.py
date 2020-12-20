@@ -13,15 +13,15 @@ app = Flask(__name__)
 @app.route("/interactive/")
 def interactive():
     
+    
     return render_template('interactive.html')
     
     
 @app.route('/background_process')
 def background_process():
             
-    
     bookData = getBookData()
-    
+    print bookData
     if bookData != []:
         addToDB(bookData, mydb)
     
@@ -33,11 +33,28 @@ def background_process():
 
 def background_process2():
             
-   
     sql_query = "SELECT * from BookDB.Books order by Autor"
     bookDict = SQL_To_JSON(sql_query, cursor)
     return json.dumps(bookDict)
 
+
+@app.route('/searchFromISBN')
+def searchFromISBN():
+            
+    ISBN = request.args.get('proglang', 0, type=str)
+    
+    
+    bookData = getBookDataISBN(str(ISBN))
+    print bookData
+    if bookData != []:
+        addToDB(bookData, mydb)
+        
+    sql_query = "SELECT * from BookDB.Books order by Autor"
+    bookDict = SQL_To_JSON(sql_query, cursor)
+    
+    
+    return json.dumps(bookDict) 
+    
 if __name__ == "__main__":
     app.run(debug=True, host= '0.0.0.0')
 

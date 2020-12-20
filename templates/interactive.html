@@ -1,6 +1,9 @@
 
 {% block body %}
 
+	<!--
+	Scanne Barcode mit Webcam, aktualisiere und zeige Liste
+	-->
 	<head>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script type=text/javascript>
@@ -23,8 +26,46 @@
 			  });
 			});
 		</script>
+		
 	</head>
 
+
+	<!--
+	Manuelle Suche mit ISBN 
+	-->
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+
+			$(function() {
+			  $('a#ISBN_search').bind('click', function() {
+				$.getJSON('/searchFromISBN', {
+				  proglang: $('input[name="ISBN_Input"]').val(),
+				}, function(json_data) {var table_obj = document.getElementById("result");
+					var TotalString = '<tr>' ;
+                    $.each(json_data, function(index, item){
+		              
+                      TotalString =  TotalString + '<td>'+item.Titel + '</td>';
+                      TotalString =  TotalString + '<td>'+item.Autor + '</td>';
+                      TotalString =  TotalString + '<td>'+item.Sprache + '</td>';
+                      TotalString =  TotalString + '<td>'+item.ISBN + '</td>';
+                      TotalString = TotalString + '</tr>' ;
+                      
+					})
+					table_obj.innerHTML = TotalString;
+				});
+				return false;
+			  });
+			});
+		</script>
+		
+	</head>
+
+
+
+	<!--
+		Anzeigen der Liste 
+	-->
 	<head>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script type=text/javascript>
@@ -43,23 +84,36 @@
 					})
 					table_obj.innerHTML = TotalString;
 				});
+	
 				return false;
 			  });
 			});
-		</script>
+		
+
+    </script>
 	</head>
 
+   
+ 
+   
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 	<body>
 		<div class='container'>
-		
+    
 		<h3>Buchverwaltungsprogramm v1.0</h3>
-			<form>
-				
+		
+			<form method="post" role="form">
 				<a href=# id=process_input><button class='btn btn-default'>Scannen</button></a>
 				<a href=# id=show_list><button class='btn btn-default'>Liste anzeigen</button></a>
+				<a href=# id=ISBN_search><button type="submit">ISBN suchen</button></a>
+				<input type="text" id="firstname" name="ISBN_Input" placeholder="ISBN">
 			</form>
+
+
 		<table id=result></table>
+		  
 		</div>
+		
+
 	</body>
 {% endblock %}

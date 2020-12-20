@@ -6,7 +6,7 @@
 
 #### Komplett händisch eintragen
 
-#### ISBN händisch eingeben
+#### Style ändern, alles moderner machen(so wie die Liste)
 
 #### Funktionalitäten auf Bucheinträgen einbauen
 
